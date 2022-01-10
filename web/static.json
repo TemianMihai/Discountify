@@ -1,0 +1,14 @@
+{
+  "root": "/app/web/build/",
+  "routes": {
+    "/**": "index.html"
+  },
+  "headers": {
+    "/meeting/event/**": {
+      "cross-origin-resource-policy": "*",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Opener-Policy": "same-origin"
+    }
+  },
+  "https_only": true
+}

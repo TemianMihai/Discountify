@@ -1,0 +1,133 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input ActivateUserInput {
+  activationKey: String!
+}
+
+type CompanyModel {
+  activationKey: String
+  address: String
+  avatarUrl: String
+  companyName: String
+  createdAt: Date!
+  description: String
+  email: String!
+  id: String!
+  interests: [Interest!]
+  isActive: Boolean
+  isComplete: Boolean
+  onboarding: OnboardingCompany!
+  refreshToken: String
+  thumbnailUrl: String
+  updatedAt: Date!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+enum Interest {
+  ART
+  COFFEE
+  CULTURE
+  DRINKS
+  ENTERTAINMENT
+  FESTIVAL
+  FOOD
+  FREE_TIME
+  MUSIC
+  RELAX
+  SPORT
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  activateCompany(input: ActivateUserInput!): Tokens
+  activateUser(input: ActivateUserInput!): Tokens
+  loginCompany(input: LoginInput!): Tokens
+  loginUser(input: LoginInput!): Tokens
+  registerCompany(input: RegistrationCompanyInput!): CompanyModel
+  registerUser(input: RegistrationUserInput!): UserModel
+  updateCompany(input: UpdateCompanyInput!): CompanyModel
+  updateUser(input: UpdateUserInput!): UserModel
+}
+
+enum Onboarding {
+  AVATAR
+  COMPLETE
+  INTERESTS
+  STORY
+}
+
+enum OnboardingCompany {
+  AVATAR
+  COMPLETE
+  DESCRIPTION
+  INTERESTS
+  THUMBNAIL
+}
+
+type Query {
+  getCompany(id: String!): CompanyModel!
+  getUser(id: String!): UserModel!
+}
+
+input RegistrationCompanyInput {
+  address: String!
+  companyName: String!
+  email: String!
+  password: String!
+}
+
+input RegistrationUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+type Tokens {
+  accessToken: String
+  refreshToken: String
+}
+
+input UpdateCompanyInput {
+  address: String
+  avatarUrl: String
+  companyName: String
+  description: String
+  email: String
+  interests: [Interest!]
+  thumbnailUrl: String
+}
+
+input UpdateUserInput {
+  avatarUrl: String
+  email: String
+  firstName: String
+  interests: [Interest!]
+  lastName: String
+  story: String
+}
+
+type UserModel {
+  activationKey: String
+  avatarUrl: String
+  createdAt: Date!
+  email: String!
+  firstName: String
+  id: String!
+  interests: [Interest!]
+  isActive: Boolean
+  isComplete: Boolean
+  lastName: String
+  onboarding: Onboarding!
+  refreshToken: String
+  story: String
+  updatedAt: Date!
+}

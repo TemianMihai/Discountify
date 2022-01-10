@@ -1,0 +1,32 @@
+version: "3"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/docker/Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./api/src/:/app/src/
+  db:
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+volumes:
+  database-data:

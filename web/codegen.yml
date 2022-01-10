@@ -1,0 +1,12 @@
+schema: http://localhost:3000/graphql
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+    - eslint --fix
+generates:
+  ./packages/shared/types/graphql.ts:
+    plugins:
+      - typescript
+    config:
+      skipTypename: true
+      declarationKind: "interface"
